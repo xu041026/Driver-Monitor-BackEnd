@@ -1,0 +1,8 @@
+# Standalone backend only. Python 3.10–3.14, Windows/Linux.
+# Keep this environment separate from RKNN/OpenCV inference.
+Django==5.2.17
+asgiref==3.12.1
+sqlparse==0.6.0
+tzdata==2026.4
+typing_extensions==4.16.0
+waitress==3.0.2
