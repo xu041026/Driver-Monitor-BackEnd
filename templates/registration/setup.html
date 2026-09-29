@@ -1,0 +1,13 @@
+{% load static %}
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>创建管理账户 · 驾驶监测</title><link rel="stylesheet" href="{% static 'monitor/styles.css' %}"></head>
+<body class="login-page"><main class="setup-shell" style="max-width:520px;margin:8vh auto;padding:32px;background:white;border:1px solid #dbe5e9;border-radius:22px;box-shadow:0 16px 60px #152e3b0a">
+<span style="font-size:12px;letter-spacing:2px;color:#087e77;font-weight:700">DRIVER MONITOR · 首次使用</span>
+<h1 style="font-size:30px;margin:20px 0 10px">建立你的监测平台</h1>
+<p style="color:#687b8b;line-height:1.8">创建管理账户后，即可查看告警、管理终端。当前没有设备和报警记录。</p>
+<form method="post" style="margin-top:24px">{% csrf_token %}
+{% if form.non_field_errors %}<div class="notice">{{ form.non_field_errors }}</div>{% endif %}
+{% for field in form %}<div class="field" style="margin-bottom:18px"><label for="{{ field.id_for_label }}" style="display:block;margin-bottom:8px;font-weight:600">{{ field.label }}</label>{{ field }}{% if field.errors %}<div style="color:#b34043;font-size:13px;margin-top:7px">{{ field.errors }}</div>{% endif %}</div>{% endfor %}
+<p style="font-size:12px;color:#687b8b">密码至少10位，避免使用常见密码或纯数字。</p>
+<button class="btn btn-primary" type="submit" style="width:100%;margin-top:12px">创建账户并进入平台</button></form>
+<p style="font-size:12px;color:#8a99a5;margin-top:22px">此初始化页面仅允许服务器本机访问，完成后自动关闭。</p>
+</main></body></html>

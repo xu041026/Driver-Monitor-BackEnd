@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">DEVICE CONNECTION</p><h1>{{ page_title }}</h1><p class="page-description">{{ device.name }} · {{ device.device_id }}</p></div></div>
+<section class="panel form-card" style="max-width:820px;padding:28px"><h2>保存设备密钥</h2><p>将下面的终端编号和密钥填写到鲁班猫的上报配置中。密钥只在此页显示一次。</p>
+<div class="field"><label>终端编号</label><input readonly value="{{ device.device_id }}" aria-label="终端编号"></div>
+<div class="field" style="margin-top:20px"><label>设备密钥</label><input readonly value="{{ token }}" aria-label="设备密钥" autocomplete="off" style="font-family:monospace"></div>
+<div class="notice" style="margin:22px 0">平台只保存密钥摘要。若密钥遗失，可由系统管理员重新生成；更换后旧密钥立即失效。</div>
+<div class="form-actions"><a class="btn btn-primary" href="{% url 'device-list' %}">我已保存，返回设备列表</a><a class="btn btn-secondary" href="{% url 'api-guide' %}">查看接入说明</a></div></section>
+{% endblock %}

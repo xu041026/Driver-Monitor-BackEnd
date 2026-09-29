@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">DEVICE CONNECTION</p><h1>接入新设备</h1><p class="page-description">登记终端身份，生成专属上报密钥。</p></div><a class="btn btn-secondary" href="{% url 'device-list' %}">返回设备列表</a></div>
+<section class="panel form-card" style="max-width:720px;padding:28px">
+<form method="post">{% csrf_token %}{{ form.non_field_errors }}
+{% for field in form %}<div class="field" style="margin-bottom:20px"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.help_text %}<p class="field-help">{{ field.help_text }}</p>{% endif %}{{ field.errors }}</div>{% endfor %}
+<div class="notice" style="margin:22px 0">创建后会显示一次设备密钥。请保存到终端配置中，平台不会再次显示原密钥。</div>
+<div class="form-actions"><button class="btn btn-primary" type="submit">创建并生成密钥</button></div>
+</form></section>
+{% endblock %}

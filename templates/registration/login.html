@@ -1,0 +1,29 @@
+{% load static %}
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>登录 · 危险驾驶监测平台</title><link rel="stylesheet" href="{% static 'monitor/styles.css' %}"></head>
+<body class="login-body">
+  <main class="login-layout">
+    <section class="login-story" aria-label="平台介绍">
+      <div class="login-brand"><span class="login-brand-symbol">S</span><span>行车守望 <small>DRIVER MONITOR</small></span></div>
+      <div class="login-story-content"><span class="eyebrow light">每一段行程，都值得守护</span><h1>看见风险。<br>守护前行。</h1><p>连接驾驶监测终端，汇集异常行为记录，<br>让每一次预警都清晰可查。</p>
+        <svg class="road-visual" viewBox="0 0 520 180" fill="none" aria-hidden="true"><path d="M20 150C145 150 110 30 230 30s75 120 250 120" stroke="rgba(255,255,255,.13)" stroke-width="65"/><path d="M20 150C145 150 110 30 230 30s75 120 250 120" stroke="rgba(255,255,255,.55)" stroke-width="2" stroke-dasharray="10 12"/><circle cx="230" cy="30" r="17" fill="#d5fff1"/><circle cx="230" cy="30" r="7" fill="#0d9488"/><circle cx="480" cy="150" r="8" fill="#83dcc4"/></svg>
+      </div>
+      <div class="login-story-footer">危险驾驶行为监测及预警系统</div>
+    </section>
+    <section class="login-panel">
+      <div class="login-card"><span class="eyebrow">欢迎回来</span><h2>登录监测平台</h2><p class="muted login-intro">查看车辆告警与终端运行记录。</p>
+        {% if form.errors %}<div class="notice notice-error" role="alert">登录未成功，请检查用户名和密码后重试。</div>{% endif %}
+        {% if next and user.is_authenticated %}<div class="notice notice-warning">当前账号没有访问该页面的权限，请使用有权限的账号登录。</div>{% endif %}
+        <form method="post" action="{% url 'login' %}" class="login-form">{% csrf_token %}
+          <div class="field"><label for="id_username">用户名</label><input id="id_username" name="username" type="text" value="{{ form.username.value|default_if_none:'' }}" autocomplete="username" autocapitalize="none" required autofocus placeholder="输入用户名"></div>
+          <div class="field"><label for="id_password">密码</label><input id="id_password" name="password" type="password" autocomplete="current-password" required placeholder="输入密码"></div>
+          <input type="hidden" name="next" value="{{ next }}"><button type="submit" class="btn btn-primary btn-block">进入工作台 <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="login-help">账号由平台管理员分配。<br>如需访问权限，请联系管理员。</p>
+      </div>
+      <div class="login-panel-footer">连接设备，开始建立你的行车安全记录。</div>
+    </section>
+  </main>
+</body>
+</html>
